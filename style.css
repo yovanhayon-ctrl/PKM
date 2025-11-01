@@ -1,0 +1,544 @@
+:root {
+  /* GANTI nilai berikut dengan kode warna persis dari Figma jika sudah ada */
+  --red-primary: #e50914; /* contoh merah dari design */
+  --black: #111111;
+  --white: #ffffff;
+
+  /* Background hero:
+     Jika Figma memberi CSS background (gradient atau image),
+     paste CSS-nya ke bagian berikut (lihat komentar di bawah).
+  */
+  --bg-hero: url("../img/home-bg.jpg"); /* default: export image dari figma ke img/hero-bg.jpg */
+}
+
+/* === PASTE FIGMA BACKGROUND/CSS HERE ===
+   Jika Figma memberikan:
+   background: linear-gradient(180deg, #000000 0%, rgba(255,255,255,0.1) 100%);
+   atau background-image: url("..."), ganti variabel --bg-hero di atas
+   atau langsung ganti .hero { background: <kode-figma>; }
+*/
+
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  color: #222;
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/*========
+   NAVBAR
+  ========*/
+.navbar {
+  background: var(--white);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  padding: 0.6rem 0;
+}
+
+.navbar .logo {
+  width: 44px;
+  height: auto;
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 6px rgba(229, 9, 20, 0.4));
+}
+
+/* Memperbesar tamilan logo dari yang sebelumnya */
+.navbar .logo {
+  width: 120px;
+  height: auto;
+  /* align-content: center; */
+}
+
+.brand-text {
+  font-weight: 700;
+  color: var(--black);
+}
+
+.navbar-brand {
+  margin-left: -40px;
+}
+/* Biar tetap rapi di layar kecil (HP/tablet) */
+@media (max-width: 768px) {
+  .navbar-brand {
+    margin-left: 0; /* reset posisi logo agar tidak kepotong */
+  }
+}
+.navbar .nav-link {
+  color: var(--black);
+  margin-right: 0.5rem;
+}
+.navbar .nav-link:hover {
+  color: var(--red-primary);
+}
+.navbar .btn-outline-light {
+  border-color: var(--red-primary);
+  color: var(--red-primary);
+}
+
+/* Tombol search di navbar */
+.search-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--red-primary) !important;
+  color: var(--white) !important;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  margin-left: 10px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+  background-color: #b30710 !important;
+  color: #fff !important;
+}
+
+.search-btn i {
+  color: #fff !important;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  min-height: 560px;
+  display: block;
+  padding: 80px 0;
+  /* default hero background: image + dark overlay + diagonal shape like figma */
+  background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.55) 0%,
+      rgba(0, 0, 0, 0.4) 100%
+    ),
+    var(--bg-hero);
+  background-size: cover;
+  background-position: center;
+  color: var(--white);
+  overflow: hidden;
+}
+
+/* hero content */
+.hero-content small {
+  opacity: 0.9;
+}
+.hero h1 {
+  color: var(--white);
+  font-size: 2.2rem;
+  line-height: 1.05;
+}
+.hero p.lead {
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 520px;
+}
+
+/* car image on right */
+.hero-car {
+  position: relative;
+  right: -20px;
+}
+.hero-car img {
+  max-width: 100%;
+  transform: translateY(10px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+}
+
+/* Gambar kecil tambahan di hero */
+.hero-decor {
+  position: absolute;
+  right: 50px; /* posisi dari kanan */
+  bottom: 40px; /* posisi dari bawah */
+  width: 250px; /* ukuran kecil */
+  height: auto;
+  z-index: 3; /* di depan background */
+  opacity: 0.9; /* agak transparan biar lembut */
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.hero-decor:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 768px) {
+  .hero-decor {
+    width: 150px;
+    right: 20px;
+    bottom: 20px;
+  }
+}
+
+/* --- HERO CAR SECTION --- */
+.hero-car {
+  position: absolute;
+  bottom: -100px; /* sedikit turun agar seperti di lantai */
+  right: -180px; /* keluar sedikit dari kanan layar */
+  width: 68%; /* ukuran proporsional besar seperti gambar */
+  z-index: 5;
+  pointer-events: none;
+}
+
+.hero-car img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: contrast(1.05) brightness(1.02); /* sedikit lebih tajam & cerah */
+  mix-blend-mode: multiply; /* biar menyatu dengan background */
+  transition: transform 0.4s ease;
+}
+
+/* Pastikan mobil di atas lantai */
+.hero-car {
+  position: absolute;
+  bottom: -120px; /* biar ban seperti menyentuh lantai */
+  right: -150px;
+  width: 68%;
+  z-index: 5; /* mobil berada di atas alas */
+}
+
+/* Pastikan background hero di bawah semua elemen */
+.hero {
+  position: relative;
+  z-index: 1;
+}
+*/
+
+/* Efek animasi halus saat hover */
+.hero-car:hover img {
+  transform: translateY(-10px);
+  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.6));
+}
+
+/* Responsif */
+@media (max-width: 992px) {
+  .hero-car {
+    width: 75%;
+    right: -40px;
+    bottom: -10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-car {
+    width: 90%;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+/* WHY section */
+/* WHY Section - Card dengan ikon dan hover merah */
+.why {
+  background: #fff;
+}
+
+.why-card {
+  border: none;
+  border-radius: 12px;
+  color: #111;
+  background-color: #fff;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  cursor: default;
+}
+
+.why-card .card-body {
+  padding: 2rem 1.5rem;
+}
+
+.why-card .feature-icon {
+  font-size: 2.2rem;
+  color: var(--red-primary);
+  transition: color 0.3s ease;
+}
+
+.why-card .card-title {
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #111;
+  transition: color 0.3s ease;
+}
+
+.why-card .card-text {
+  color: #555;
+  line-height: 1.5;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.why-card:hover {
+  background-color: var(--red-primary);
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(229, 9, 20, 0.3);
+}
+
+.why-card:hover .feature-icon,
+.why-card:hover .card-title,
+.why-card:hover .card-text {
+  color: #fff;
+}
+
+/* VIDEO SECTION */
+/* ==== VIDEO SECTION ==== */
+.video-section {
+  background-color: var(--red-primary);
+  color: var(--white);
+  padding: 5rem 0;
+}
+
+/* Semua teks putih */
+.video-section h3,
+.video-section p,
+.video-section span {
+  color: #fff !important;
+}
+
+/* === Tombol YouTube === */
+.video-section .btn-light {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #fff;
+  color: var(--red-primary);
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.video-section .btn-light i {
+  color: var(--red-primary); /* logo YouTube merah */
+  font-size: 1.4rem;
+}
+
+.video-section .btn-light:hover {
+  background-color: #f2f2f2;
+  color: #b30710;
+}
+
+.video-section .btn-light:hover i {
+  color: #b30710;
+}
+
+/* RECENT PROJECTS */
+.projects {
+  padding-top: 3.5rem; /* tambah sedikit ruang di atas */
+  padding-bottom: 3rem; /* tambah ruang di bawah */
+  margin-top: -15px; /* hanya sedikit naik, tidak nempel banget */
+  position: relative;
+  z-index: 2;
+}
+
+.projects h2 {
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.projects .project-card {
+  border: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  transition: all 0.25s ease;
+  transform: translateY(0); /* posisi normal */
+}
+
+/* Hover efek elegan */
+.projects .project-card:hover {
+  transform: translateY(-10px); /* naik halus */
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+}
+
+.projects .project-card img {
+  height: 180px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.projects .project-card:hover img {
+  transform: scale(1.05);
+}
+
+.projects .card-body {
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+/* Versi mobile */
+@media (max-width: 768px) {
+  .projects {
+    padding-top: 2.5rem;
+    padding-bottom: 2rem;
+    margin-top: -10px;
+  }
+  .projects .project-card img {
+    height: 160px;
+  }
+}
+
+/* STATISTIC SECTION */
+.stats {
+  background-color: var(--red-primary);
+  color: var(--white);
+  padding: 0.8rem 0;
+  margin: -40px auto -40px auto; /* agar menjorok ke atas dan bawah */
+  width: 85%;
+  border-radius: 6px;
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25); /* bayangan global */
+}
+
+/* Efek gradasi lembut di atas & bawah */
+.stats::before,
+.stats::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 0%;
+  height: 30px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.stats::before {
+  top: -30px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), transparent);
+}
+
+.stats::after {
+  bottom: -30px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.2), transparent);
+}
+
+.stats h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.stats p {
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  margin: 0;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Responsif di HP */
+@media (max-width: 768px) {
+  .stats {
+    width: 92%;
+    margin: -25px auto -25px auto;
+    padding: 1rem 0;
+  }
+  .stats::before,
+  .stats::after {
+    height: 20px;
+  }
+}
+
+/*======== 
+   FOOTER
+  ========*/
+/* FOOTER INFO (dengan background image) */
+.footer-info {
+  position: relative;
+  background: url("../img/footer-info.jpg") center/cover no-repeat; /* Ganti nama file sesuai gambar kamu */
+  color: #ffffff;
+  padding: 9rem 5rem 0;
+  overflow: hidden;
+}
+
+/* Tambahkan lapisan gelap transparan biar teks tetap terbaca */
+.footer-info::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* ubah opacity sesuai kebutuhan */
+  z-index: 1;
+}
+
+.footer-info .container {
+  position: relative;
+  z-index: 2; /* supaya teks tampil di atas overlay */
+}
+
+.footer-info a {
+  color: var(--red-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-info a:hover {
+  color: #ff4d4d;
+}
+
+.footer-info .footer-logo {
+  width: 120px;
+}
+
+.footer-info p.text-muted {
+  color: rgba(255, 255, 255, 0.9) !important;
+  line-height: 1.6;
+}
+
+/* FOOTER COPYRIGHT */
+.footer-copyright {
+  background: #b30710;
+  color: #fff;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.footer-copyright p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* RESPONSIVE TWEAKS */
+@media (max-width: 992px) {
+  .hero {
+    padding: 70px 0;
+  }
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+  .hero-car {
+    display: none;
+  }
+}
+@media (max-width: 576px) {
+  .hero {
+    min-height: 520px;
+    padding: 60px 0;
+  }
+  .hero h1 {
+    font-size: 1.25rem;
+  }
+}
+
+/* small utilities */
+.text-muted-small {
+  color: #ffffff;
+  font-size: 0.95rem;
+}

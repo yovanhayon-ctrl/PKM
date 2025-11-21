@@ -1,0 +1,1218 @@
+:root {
+  /* GANTI nilai berikut dengan kode warna persis dari Figma jika sudah ada */
+  --red-primary: #e50914; /* contoh merah dari design */
+  --black: #111111;
+  --white: #ffffff;
+
+  /* Background hero:
+     Jika Figma memberi CSS background (gradient atau image),
+     paste CSS-nya ke bagian berikut (lihat komentar di bawah).
+  */
+  --bg-hero: url("../img/home-bg.jpg"); /* default: export image dari figma ke img/hero-bg.jpg */
+}
+
+/* PASTE FIGMA BACKGROUND/CSS HERE
+   Jika Figma memberikan:
+   background: linear-gradient(180deg, #000000 0%, rgba(255,255,255,0.1) 100%);
+   atau background-image: url("..."), ganti variabel --bg-hero di atas
+   atau langsung ganti .hero { background: <kode-figma>; }
+*/
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  color: #222;
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/*==============
+  NAVBAR SECTION
+  ==============*/
+
+/* Area utama navbar */
+/* Memberikan warna background putih, bayangan lembut, dan jarak vertikal */
+.navbar {
+  background: var(--white);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  padding: 0.6rem 0;
+}
+
+/* Navbar-LOGO*/
+.logo {
+  width: 120px;
+  height: auto;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Efek hover pada logo */
+/* Saat diarahkan, logo akan sedikit membesar dan mendapat efek bayangan */
+.logo:hover {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 6px rgba(229, 9, 20, 0.4));
+}
+
+/* Penyesuaian ukuran logo di navbar */
+/* Logo navbar dibuat lebih besar dari ukuran default */
+.navbar .logo {
+  width: 120px;
+  height: auto;
+  /* align-content: center; (opsional untuk penyelarasan vertikal) */
+}
+
+/* Teks nama merek di navbar */
+/* Membuat tulisan "YSP Bengkel" lebih tebal dan berwarna hitam */
+.brand-text {
+  font-weight: 700;
+  color: var(--black);
+}
+
+/* Posisi merek navbar */
+/* Menggeser logo & teks sedikit ke kiri agar lebih proporsional */
+.navbar-brand {
+  margin-left: -40px;
+}
+
+/* Responsif: untuk tampilan tablet dan HP */
+/* Mengatur ulang posisi brand agar tidak kepotong di layar kecil */
+@media (max-width: 768px) {
+  .navbar-brand {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .logo {
+    width: 90px; /* dari 120px → jadi lebih kecil */
+  }
+}
+
+/* Navbar-MENU */
+/* Efek hover menu navbar dengan ukuran garis mengikuti teks 'Price' */
+/* Semua menu memiliki panjang garis hover yang sama (lebar kira-kira selebar tulisan 'Price') */
+.navbar .nav-link {
+  position: relative; /* untuk menampung pseudo-element garis */
+  color: var(--black);
+  font-weight: 400;
+  padding: 6px 14px;
+  border-radius: 6px;
+  margin-right: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+/* Garis bawah tersembunyi di awal */
+.navbar .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0; /* belum muncul */
+  height: 2px;
+  background-color: var(--red-primary);
+  border-radius: 2px;
+  transform: translateX(-50%);
+  transition: all 0.35s ease;
+}
+
+/* Efek hover teks berubah warna */
+.navbar .nav-link:hover {
+  color: var(--red-primary);
+}
+
+/* Saat hover: garis muncul dengan panjang tetap seperti teks 'Price' */
+.navbar .nav-link:hover::after {
+  width: 45px; /* kira-kira selebar teks 'Price' */
+}
+
+/* Menu aktif (tetap merah dan garis tampil) */
+.navbar .nav-link.active {
+  color: var(--red-primary);
+}
+.navbar .nav-link.active::after {
+  width: 45px;
+}
+
+.navbar-toggler-icon {
+  filter: invert(1); /* menjadikan icon putih */
+}
+
+/* SEARCH BUTTON */
+.search-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--red-primary) !important;
+  color: var(--white) !important;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  margin-left: 10px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+/* Efek hover tombol pencarian */
+/* Warna menjadi merah tua saat diarahkan */
+.search-btn:hover {
+  background-color: #b30710 !important;
+  color: #fff !important;
+}
+
+/* Ikon di dalam tombol pencarian */
+/* Menjaga warna ikon tetap putih */
+.search-btn i {
+  color: #fff !important;
+}
+
+/*=============
+  HERO SECTION
+  =============*/
+
+/* Area utama hero */
+/* Menentukan tinggi hero penuh layar, posisi konten di tengah, dan efek overlay gelap di atas gambar */
+.hero {
+  position: relative;
+  height: 100vh; /* Mengisi tinggi penuh layar */
+  display: flex;
+  align-items: center; /* Menempatkan konten di tengah secara vertikal */
+  padding: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.35)),
+    var(--bg-hero); /* Overlay gelap + gambar background */
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat; /* Tidak mengulang gambar */
+  color: var(--white);
+  overflow: hidden; /* Sembunyikan elemen yang keluar area */
+}
+
+/* Responsif Hero (untuk HP/tablet) */
+@media (max-width: 768px) {
+  .hero {
+    height: auto;
+    padding: 60px 0;
+  }
+}
+
+/* HERO CONTENT (TEKS DI DALAM HERO) */
+
+/* Tulisan kecil di atas heading */
+.hero-content small {
+  opacity: 0.9;
+  font-size: 1.8rem;
+}
+
+/* Judul utama (headline) */
+.hero h1 {
+  color: var(--white);
+  font-size: 2.2rem;
+  line-height: 1.05;
+}
+
+/* Paragraf pendukung (lead text) */
+.hero p.lead {
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 520px;
+}
+
+/* Penyesuaian untuk Tombol ORDER NOW */
+.hero .btn-danger {
+  /* background-color: hsl(357, 85%, 59%); */
+  border-radius: 8px;
+  padding: 10px 12px;
+  transition: background-color 0.3s ease;
+}
+
+.hero .btn-danger:hover {
+  background-color: var(--red-primary);
+}
+
+/* Tombol utama ORDER NOW */
+.hero .order-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.1px;
+  background-color: #e74c3c;
+  color: #fff;
+  font-weight: 700;
+  font-style: italic;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 13px;
+  box-shadow: 0 4px 10px rgba(231, 76, 60, 0.4);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+/* Efek saat tombol di-hover */
+.hero .order-btn:hover {
+  background-color: var(--red-primary);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(192, 57, 43, 0.5);
+}
+
+/* Ikon gear di dalam tombol */
+.hero .order-btn .gear-icon {
+  font-size: 1.1rem; /* ukuran ikon */
+  transition: transform 0.6s ease; /* animasi halus */
+}
+
+/* Animasi ikon berputar saat hover */
+.hero .order-btn:hover .gear-icon {
+  transform: rotate(200deg);
+}
+
+/* HERO CAR IMAGE (GAMBAR MOBIL UTAMA) */
+
+/* Mengatur posisi relatif agar gambar bisa bergerak secara halus */
+.hero-car {
+  position: relative;
+  right: -20px;
+}
+
+/* Gaya gambar mobil */
+/* Menyatu dengan background menggunakan efek blend dan filter */
+.hero-car img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: brightness(0.95) saturate(0.9) contrast(1.05);
+  mix-blend-mode: multiply; /* menyatukan warna merah dengan bayangan */
+  opacity: 0.95;
+  transition: transform 0.4s ease;
+}
+
+/* HERO DECORATIVE IMAGE (GAMBAR TAMBAHAN) */
+
+/* Gambar dekorasi di pojok kanan bawah */
+/* Biasanya logo kecil, pola, atau ikon tambahan */
+.hero-decor {
+  position: absolute;
+  right: 20px;
+  bottom: 40px;
+  width: 250px;
+  height: auto;
+  z-index: 3; /* Di depan background */
+  opacity: 0.9; /* Transparansi lembut */
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Animasi halus */
+}
+
+/* Efek hover pada dekorasi */
+/* Saat diarahkan, gambar sedikit membesar dan lebih jelas */
+.hero-decor:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+/* Responsif dekorasi (HP/tablet) */
+/* Mengecilkan ukuran dan posisi dekorasi di layar kecil */
+@media (max-width: 768px) {
+  .hero-decor {
+    width: 150px;
+    right: 20px;
+    bottom: 20px;
+  }
+}
+
+/* HERO CAR POSITIONING (POSISI FIX MOBIL) */
+
+/* Penempatan mobil di bagian bawah kanan */
+/* Agar terlihat seperti berada di atas lantai hero */
+.hero-car {
+  position: absolute;
+  bottom: -100px; /* Sedikit keluar dari bawah untuk efek natural */
+  right: -180px; /* Sedikit keluar dari sisi kanan */
+  width: 68%; /* Proporsi ukuran mobil */
+  z-index: 5;
+  pointer-events: none; /* Tidak bisa diklik */
+}
+
+/* Gaya tambahan untuk gambar mobil */
+/* Menambahkan filter agar lebih cerah dan menyatu dengan background */
+.hero-car img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: contrast(1.05) brightness(1.02);
+  mix-blend-mode: multiply; /* Agar warna menyatu dengan background */
+  transition: transform 0.4s ease;
+  background: transparent;
+}
+
+/* Penyesuaian posisi mobil lebih akurat */
+/* Agar ban mobil sejajar dengan bagian bawah hero */
+.hero-car {
+  position: absolute;
+  bottom: -120px; /* Naik-turun sedikit sesuai proporsi */
+  right: -150px;
+  width: 68%;
+  z-index: 5;
+}
+
+/* Layering hero */
+/* Pastikan background di bawah elemen lain */
+.hero {
+  position: relative;
+  z-index: 1;
+  /* background-attachment: fixed;  Aktifkan jika ingin background tidak ikut scroll */
+}
+
+/* HERO CAR HOVER EFFECT */
+
+/* Efek animasi saat hover */
+/* Mobil sedikit naik dan menambah bayangan halus */
+.hero-car:hover img {
+  transform: translateY(-10px);
+  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.6));
+}
+
+/* HERO RESPONSIVE DESIGN */
+
+/* Penyesuaian ukuran mobil di layar tablet */
+@media (max-width: 992px) {
+  .hero-car {
+    width: 75%;
+    right: -40px;
+    bottom: -10px;
+  }
+}
+
+/* === Penyesuaian ukuran mobil di layar HP kecil === */
+@media (max-width: 576px) {
+  .hero-car {
+    width: 90%;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+/*=============================
+  SECTION: MENGAPA BENGKEL KAMI
+  =============================*/
+
+/* Area utama section */
+.why {
+  background: #fff;
+  position: relative;
+  padding: 4rem 0 5rem; /* Judul lebih naik */
+}
+
+/* Header section (judul & tombol panah) */
+.why-header {
+  position: relative;
+  text-align: center;
+  margin-bottom: 4rem; /* jarak bawah judul dikurangi */
+}
+
+/* Judul utama */
+.why-header h2 {
+  font-weight: 700;
+  color: var(--black);
+  display: inline-block;
+  margin-top: -10px; /* judul dinaikkan sedikit */
+  margin-bottom: 0.3rem;
+}
+
+/* Tombol panah di kanan */
+.why-controls {
+  position: absolute;
+  right: 25px;
+  top: 220%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* Style tombol panah */
+.why-btn {
+  background-color: var(--red-primary);
+  color: var(--white);
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* Efek hover tombol */
+.why-btn:hover {
+  background-color: #b30710;
+  transform: scale(1.08);
+}
+
+/* Wrapper box-card WHY */
+.why-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem; /* jarak antara tombol dan kartu */
+}
+
+/* Kartu WHY */
+.why-card {
+  flex: 0 0 22%;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  padding: 2rem 1rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+/* Ikon kartu */
+.why-card .feature-icon {
+  font-size: 2.2rem;
+  color: var(--red-primary);
+  margin-bottom: 1rem;
+  transition: color 0.3s ease;
+}
+
+/* Judul kartu */
+.why-card h5 {
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #111;
+}
+
+/* Deskripsi kartu */
+.why-card p {
+  color: #555;
+  font-size: 0.95rem;
+  text-align: left;
+  line-height: 1.6;
+  transition: color 0.3s ease;
+}
+
+/* Hover kartu */
+.why-card:hover {
+  background-color: var(--red-primary);
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(229, 9, 20, 0.3);
+}
+
+.why-card:hover .feature-icon,
+.why-card:hover h5,
+.why-card:hover p {
+  color: #fff;
+}
+
+/*=========================
+   RESPONSIVE DESIGN
+=========================*/
+
+/* Tablet (≤992px) */
+@media (max-width: 992px) {
+  .why-card {
+    flex: 0 0 45%;
+  }
+}
+
+/* HP kecil (≤576px) */
+@media (max-width: 576px) {
+  .why {
+    padding-bottom: 1.8rem;
+  }
+  /* Judul dinaikkan sedikit */
+  .why-header h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.6rem; /* Sesuaikan agar pas di HP */
+  }
+
+  /* Tombol (< >) diposisikan lebih rendah agar tidak bertabrakan */
+  .why-controls {
+    position: absolute;
+    right: 0;
+    top: 165%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 0.5rem;
+    z-index: 10;
+  }
+
+  /* Jarak antara tombol dan card */
+  .why-cards {
+    margin-top: 3.5rem; /* ↓ tambahkan jarak agar rapi */
+  }
+
+  /* Card tampil 1 kolom dengan lebar penuh */
+  .why-card {
+    flex: 0 0 100%; /* Full width di mobile */
+    margin: 0 0 1.5rem 0;
+    min-height: 230px;
+  }
+
+  /* Ikon diperkecil sedikit agar proporsional */
+  .why-card .feature-icon {
+    font-size: 1.8rem;
+  }
+}
+
+/*===============================
+  VIDEO SECTION (YouTube Embed)
+  ===============================*/
+
+/* Area utama video section */
+/* Latar belakang merah dan teks putih */
+.video-section {
+  background-color: var(--red-primary);
+  color: var(--white);
+  padding: 5rem 0;
+}
+
+/* Warna teks umum dalam section video */
+.video-section h3 {
+  font-weight: 700;
+  color: var(--white);
+}
+.video-section p,
+.video-section span {
+  color: #fff !important;
+}
+
+/* Tombol menuju channel YouTube */
+/* Tampilan tombol putih dengan ikon merah */
+.video-section .btn-light {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #fff;
+  color: var(--red-primary);
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+}
+
+/* Ikon YouTube di dalam tombol */
+.video-section .btn-light i {
+  color: var(--red-primary);
+  font-size: 1.4rem;
+}
+
+/* Efek hover tombol */
+.video-section .btn-light:hover {
+  background-color: #f2f2f2;
+  color: #b30710;
+}
+
+.video-section .btn-light:hover i {
+  color: #b30710;
+}
+
+/* Bingkai video YouTube  */
+/* Membulatkan sudut video agar lebih elegan */
+.video-section .ratio {
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+/* Bayangan lembut di sekitar video */
+.video-section .ratio iframe {
+  display: block;
+  border: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsif mobile */
+@media (max-width: 576px) {
+  .video-section {
+    padding-top: 2rem;
+    margin-top: -10px;
+    padding-bottom: 1.8rem;
+  }
+}
+
+/*======================
+  RECENT PROJECT SECTION
+  ======================*/
+.project {
+  padding-top: 2rem !important; /* naikkan semua isi section */
+}
+
+.projects {
+  padding: 5rem 0; /* ruang vertikal atas dan bawah */
+  background-color: #fff;
+}
+
+/* --- Header Judul + Tombol Read More --- */
+.project-header {
+  position: relative; /* posisi untuk tombol read more */
+  text-align: center; /* judul di tengah */
+  margin-bottom: 3rem;
+}
+
+/* Judul "Recent Project" di tengah */
+.project-header h2 {
+  font-weight: 700;
+  color: var(--black);
+  font-size: 2rem;
+  margin: 0;
+  display: inline-block;
+}
+
+/* Tombol "Read More >>" di kanan */
+.project-header .read-more {
+  color: var(--red-primary); /* warna merah utama */
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  position: absolute;
+  right: 0;
+  top: 160%;
+  transform: translateY(-50%);
+}
+
+/* Efek hover tombol Read More */
+.project-header .read-more:hover {
+  color: #b30710;
+  text-decoration: underline;
+}
+
+/* --- Kartu Project --- */
+.project-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  background-color: #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Gambar project */
+.project-card img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  transition: transform 0.5s ease;
+  display: block;
+}
+
+/* === Overlay hitam hanya di bagian gambar === */
+.project-card .img-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 230px; /* sama tinggi dengan gambar */
+  background: rgba(0, 0, 0, 0); /* transparan awal */
+  transition: background 0.4s ease;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  z-index: 1;
+}
+
+/* Saat hover: overlay muncul hanya di atas gambar */
+.project-card:hover .img-overlay {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* Saat hover: gambar sedikit membesar */
+.project-card:hover img {
+  transform: scale(1.08);
+}
+
+/* Area isi kartu (judul + deskripsi) */
+.project-card .card-body {
+  background-color: #fff;
+  padding: 1.5rem;
+  flex-grow: 1;
+  z-index: 2;
+  position: relative;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Judul project */
+.project-card .card-body h5 {
+  font-weight: 700;
+  color: var(--red-primary); /* warna merah utama */
+  margin-bottom: 0.75rem;
+  font-size: 1.05rem;
+  line-height: 1.3;
+}
+
+/* Deskripsi project */
+.project-card .card-body p {
+  color: #444; /* abu gelap agar mudah dibaca */
+  font-size: 0.95rem;
+  text-align: justify;
+  line-height: 1.6;
+}
+
+/* Efek hover keseluruhan kartu */
+.project-card:hover {
+  transform: scale(1.05); /* naik sedikit */
+  box-shadow: 0px 30px 18px -8px rgba(0, 0, 0, 0.25);
+}
+
+/* Saat muncul di layar */
+.project-card.fade-up {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 992px) {
+  .project-header h2 {
+    font-size: 1.75rem;
+  }
+
+  .project-card img,
+  .project-card .img-overlay {
+    height: 200px;
+  }
+
+  .project-header .read-more {
+    position: static;
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects {
+    padding: 4rem 1rem;
+  }
+
+  .project-header h2 {
+    font-size: 1.6rem;
+  }
+
+  .project-card {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Responsif di hp */
+@media (max-width: 576px) {
+  .projects {
+    padding-top: 1rem !important; /* naikkan semua isi section */
+  }
+
+  .project-header {
+    text-align: center !important;
+    position: relative !important;
+  }
+
+  /* TURUNKAN JUDUL RECENT PROJECT */
+  .project-header h2 {
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+    text-align: center !important;
+  }
+
+  .project-header .read-more {
+    position: static !important;
+    display: block !important;
+    width: 100% !important;
+    text-align: right !important;
+    padding-right: 0.6rem !important;
+    margin-top: 0 !important;
+    margin-bottom: -5rem !important;
+  }
+}
+
+/* STATISTIC SECTION */
+
+/* Area utama statistik */
+.stats {
+  background-color: var(--red-primary);
+  color: var(--white);
+  padding: 0.4rem 0;
+  margin: -20px auto -30px auto;
+  width: 70%;
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.stat.percent::after {
+  content: "%";
+  margin-left: 3px;
+  font-weight: 700;
+}
+
+/* Efek gradasi di atas dan bawah area statistik */
+.stats::before,
+.stats::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 0%;
+  height: 30px;
+  pointer-events: none;
+  z-index: -1; /* Di bawah isi utama */
+}
+
+/* Gradasi di bagian atas */
+.stats::before {
+  top: -30px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), transparent);
+}
+
+/* Gradasi di bagian bawah */
+.stats::after {
+  bottom: -30px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.2), transparent);
+}
+
+/* Angka utama (nilai statistik) */
+.stats h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+/* Teks deskripsi di bawah angka */
+.stats p {
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  margin: 0;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* RESPONSIVE DESIGN - STATISTIC SECTION */
+
+/* Untuk tampilan HP dan tablet (≤768px) */
+@media (max-width: 768px) {
+  .stats {
+    width: 80%;
+    margin: -25px auto -25px auto;
+    padding: 2.5rem 1rem;
+  }
+
+  /* Kurangi tinggi efek gradasi di layar kecil */
+  .stats::before,
+  .stats::after {
+    height: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .stats {
+    width: 100%;
+    margin-bottom: 0px !important;
+    margin-top: -15px !important;
+  }
+}
+
+/*========
+   FOOTER 
+  ========*/
+
+/* Bagian utama footer dengan background gambar */
+.footer-info {
+  background: url("../img/footer-info.jpg") center/cover no-repeat;
+  color: #ffffff;
+  position: relative;
+  padding: 5rem 0 3rem;
+}
+
+/* Lapisan overlay gelap agar teks terbaca */
+.footer-info::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 1;
+}
+
+/* Posisi konten di atas overlay */
+.footer-info .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Grid untuk kolom footer */
+.footer-info .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* Setiap kolom footer */
+.footer-col {
+  flex: 0 0 25%;
+  max-width: 25%;
+  padding: 0 15px;
+}
+
+/* Judul kolom */
+.footer-info h6 {
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+/* Deskripsi teks */
+.footer-info p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Link umum di footer */
+.footer-info a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-info a:hover {
+  color: var(--red-primary);
+}
+
+/* Logo di footer */
+.footer-logo {
+  width: 120px;
+  margin-bottom: 1rem;
+}
+
+/* Deskripsi di bawah logo */
+.footer-logo .footer-desc {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+/* Hover efek deskripsi */
+.footer-info .footer-desc:hover {
+  color: var(--red-primary);
+  transition: color 0.3s ease;
+}
+
+/* Ikon media sosial */
+.social-links a {
+  color: #fff;
+  font-size: 1.2rem;
+  margin-right: 10px;
+  transition: color 0.3s ease;
+}
+.social-links a:hover {
+  color: var(--red-primary);
+}
+
+/* RECENT POST */
+.recent-post .post-item {
+  display: flex;
+  align-items: flex-start;
+}
+
+.recent-post .post-thumb {
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-right: 10px;
+}
+
+.recent-post .post-title {
+  font-weight: 600;
+  color: #fff;
+  font-size: 0.9rem;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.recent-post .post-title:hover {
+  color: var(--red-primary);
+}
+
+.recent-post p {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 4px;
+}
+
+.recent-post span {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/*===== QUICK CONTACT FORM =====*/
+.footer-info form input,
+.footer-info form textarea {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.footer-info form input::placeholder,
+.footer-info form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Tombol kirim form */
+.footer-info button {
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+.footer-info button:hover {
+  background-color: #b30710;
+}
+
+/* RESPONSIVE FOOTER */
+
+/* Tablet (≤992px) */
+@media (max-width: 992px) {
+  .footer-col {
+    flex: 0 0 50%;
+    max-width: 50%;
+    margin-bottom: 2rem;
+  }
+  .footer-info {
+    text-align: center;
+  }
+  .recent-post .post-item {
+    justify-content: center;
+  }
+  .footer-info form {
+    margin: 0 auto;
+    max-width: 300px;
+  }
+}
+
+/* HP (≤576px) */
+@media (max-width: 576px) {
+  .footer-col {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .footer-info {
+    text-align: center;
+  }
+  .recent-post .post-item {
+    flex-direction: column;
+    align-items: center;
+  }
+  .recent-post .post-thumb {
+    margin-bottom: 8px;
+  }
+}
+
+/* COPYRIGHT */
+.footer-copyright {
+  background: #b30710;
+  color: #fff;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.footer-copyright p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* UTILITIES */
+.text-muted-small {
+  color: #ffffff;
+  font-size: 0.95rem;
+}
+
+/* TAMBAHAN DI MENU NAVBAR (KHUSUS TAMPILAN MOBILE) */
+
+/* ===========================================================
+   NAVBAR UNDERLINE MOBILE + TABLET — SAME AS DESKTOP
+=========================================================== */
+@media (max-width: 991px) {
+  .navbar .nav-link {
+    position: relative;
+    padding-bottom: 6px; /* ruang untuk garis */
+    display: inline-block; /* penting! agar garis mengikuti teks */
+  }
+
+  .navbar .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: 0; /* berada di bawah teks */
+    left: 50%; /* mulai dari tengah */
+    transform: translateX(-50%); /* efek garis dari tengah */
+    width: 0; /* awal tidak terlihat */
+    height: 2px; /* sama seperti desktop */
+    background-color: var(--red-primary);
+    transition: width 0.35s ease;
+  }
+
+  /* Efek: hover, focus, active → garis melebar dari tengah */
+  .navbar .nav-link:hover::after,
+  .navbar .nav-link:focus::after,
+  .navbar .nav-link:active::after {
+    width: 45px; /* sama seperti desktop */
+  }
+
+  /* Teks ikut berubah menjadi merah */
+  .navbar .nav-link:hover,
+  .navbar .nav-link:focus,
+  .navbar .nav-link:active {
+    color: var(--red-primary);
+  }
+}
+
+/* =================================================
+   ANIMASI NAVBAR COLLAPSE (MOBILE + TABLET ≤ 991px)
+   ================================================= */
+@media (max-width: 991px) {
+  #navMenu {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: max-height 0.55s cubic-bezier(0.25, 0.1, 0.25, 1),
+      opacity 0.55s ease-in-out;
+  }
+
+  /* Saat menu terbuka — smooth open */
+  #navMenu.opening {
+    max-height: 600px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Saat menu terbuka penuh */
+  #navMenu.show {
+    max-height: 600px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Saat menutup — smooth close */
+  #navMenu.closing {
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+}

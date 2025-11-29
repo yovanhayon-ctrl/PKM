@@ -1,0 +1,1917 @@
+:root {
+  /* GANTI nilai berikut dengan kode warna persis dari Figma jika sudah ada */
+  --red-primary: #e50914; /* contoh merah dari design */
+  --black: #111111;
+  --white: #ffffff;
+
+  --bg-hero: url("../img/home-bg.jpg"); /* GANTI dengan path gambar hero dari Figma */
+}
+
+/* GLOBAL STYLES */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  color: #222;
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/*==============
+  NAVBAR SECTION
+  ==============*/
+
+/* BASE STYLE (TANPA RESPONSIVE) */
+
+/* Area utama navbar */
+.navbar {
+  background: var(--white);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  padding: 0.6rem 0;
+}
+
+/* Navbar-LOGO */
+.logo {
+  width: 120px;
+  height: auto;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  transform: translateX(-50px);
+}
+
+/* Hover logo */
+.logo:hover {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 6px rgba(229, 9, 20, 0.4));
+}
+
+/* Penyesuaian ukuran logo */
+.navbar .logo {
+  width: 120px;
+  height: auto;
+}
+
+/* Navbar-MENU */
+.navbar .nav-link {
+  position: relative;
+  color: var(--black);
+  font-weight: 400;
+  padding: 6px 14px;
+  border-radius: 6px;
+  margin-right: 1.25rem;
+  transition: color 0.3s ease;
+}
+
+/* Garis bawah */
+.navbar .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--red-primary);
+  border-radius: 2px;
+  transform: translateX(-50%);
+  transition: all 0.35s ease;
+}
+
+/* Hover menu */
+.navbar .nav-link:hover {
+  color: var(--red-primary);
+}
+
+.navbar .nav-link:hover::after {
+  width: 45px;
+}
+
+/* Menu aktif */
+.navbar .nav-link.active {
+  color: var(--red-primary);
+}
+
+.navbar .nav-link.active::after {
+  width: 45px;
+}
+
+/* Toggler icon */
+.navbar-toggler-icon {
+  filter: invert(1);
+}
+
+/* SEARCH BUTTON */
+.search-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--red-primary) !important;
+  color: var(--white) !important;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  margin-left: 10px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+  background-color: #b30710 !important;
+  color: #fff !important;
+}
+
+.search-btn i {
+  color: #fff !important;
+}
+
+/* RESPONSIVE ALL DEVICE */
+
+/* 1. MOBILE EXTRA SMALL 0–360px */
+@media (max-width: 360px) {
+  .navbar .logo {
+    width: 75px !important;
+    transform: translateX(0px) !important;
+  }
+
+  .navbar-brand {
+    margin-left: -5px;
+  }
+
+  .nav-link {
+    margin-right: 0.6rem;
+  }
+}
+
+/* 2. SMALL PHONES 361–480px */
+@media (min-width: 361px) and (max-width: 480px) {
+  .navbar .logo {
+    width: 90px !important;
+    transform: translateX(0px);
+  }
+
+  .navbar-brand {
+    margin-left: -5px;
+  }
+
+  .nav-link {
+    margin-right: 0.8rem;
+  }
+}
+
+/* 3. MEDIUM PHONES 481–576px */
+@media (min-width: 481px) and (max-width: 576px) {
+  .navbar .logo {
+    width: 90px !important;
+    transform: translateX(0px);
+  }
+
+  .navbar-brand {
+    margin-left: -5px;
+  }
+
+  .nav-link {
+    margin-right: 0.9rem;
+  }
+}
+
+/* 4. TABLET PORTRAIT 577–768px */
+@media (min-width: 577px) and (max-width: 768px) {
+  .navbar .logo {
+    width: 100px !important;
+    transform: translateX(-20px) !important; /* reset */
+  }
+}
+
+/* 5. TABLET LANDSCAPE / SMALL LAPTOP 769–1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .navbar .logo {
+    width: 105px;
+    transform: translateX(-50px) !important;
+  }
+}
+
+/* 6. LAPTOP 1025–1365px */
+@media (min-width: 1025px) and (max-width: 1365px) {
+  .navbar .logo {
+    width: 115px;
+    transform: translateX(-50px);
+  }
+}
+
+/* 7. DESKTOP BESAR(Sama seperti laptop saya) ≥ 1366px */
+@media (min-width: 1366px) {
+  .navbar .logo {
+    width: 120px;
+    transform: translateX(-40px);
+  }
+}
+
+/* 8. VERY LARGE DESKTOP ≥1600px */
+@media (min-width: 1600px) {
+  /* kode khusus bisa ditambah nanti */
+}
+
+/* TOUCH DEVICES */
+@media (hover: none) and (pointer: coarse) {
+  .logo:hover {
+    transform: none;
+    filter: none;
+  }
+}
+
+/*============
+  HERO SECTION 
+  ============*/
+
+.hero {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  color: var(--white);
+  overflow: hidden;
+  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.35)),
+    var(--bg-hero);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: clamp(60vh, 100vh, 120vh);
+}
+
+.hero-content small {
+  opacity: 0.9;
+  font-size: 1.8rem;
+}
+
+.hero h1 {
+  color: var(--white);
+  font-size: 2.2rem;
+  line-height: 1.05;
+}
+
+.hero p.lead {
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 520px;
+}
+
+/* ORDER BUTTON */
+.hero .btn-danger {
+  border-radius: 8px;
+  padding: 10px 12px;
+  transition: background-color 0.3s ease;
+}
+.hero .btn-danger:hover {
+  background-color: var(--red-primary);
+}
+
+.hero .order-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.1px;
+  background-color: #e74c3c;
+  color: #fff;
+  font-weight: 700;
+  font-style: italic;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 13px;
+  box-shadow: 0 4px 10px rgba(231, 76, 60, 0.4);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.hero .order-btn:hover {
+  background-color: var(--red-primary);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(192, 57, 43, 0.5);
+}
+
+.hero .order-btn .gear-icon {
+  font-size: 1.1rem;
+  transition: transform 0.6s ease;
+}
+.hero .order-btn:hover .gear-icon {
+  transform: rotate(200deg);
+}
+
+/* HERO CAR */
+.hero-car {
+  position: absolute;
+  bottom: -120px;
+  right: -150px;
+  width: 68%;
+  max-width: 1200px;
+  z-index: 5;
+  pointer-events: none;
+  transition: transform 0.45s ease, right 0.45s ease, bottom 0.45s ease,
+    width 0.45s ease;
+  will-change: transform, right, bottom, width;
+}
+
+.hero-car img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  filter: contrast(1.05) brightness(1.02);
+  mix-blend-mode: multiply;
+  transition: transform 0.4s ease;
+  background: transparent;
+}
+
+.hero-car:hover img {
+  transform: translateY(-10px);
+  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.6));
+}
+
+/* DECORATION */
+.hero-decor {
+  position: absolute;
+  right: 20px;
+  bottom: 40px;
+  width: 250px;
+  height: auto;
+  z-index: 3;
+  opacity: 0.9;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  will-change: transform, opacity;
+}
+.hero-decor:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+/* RESPONSIVE ALL DEVICE (HERO SECTION) */
+
+/* 1. MOBILE EXTRA SMALL — 0–360px */
+@media (max-width: 360px) {
+  .hero {
+    padding: 40px 10px;
+  }
+  .hero-car {
+    width: 100%;
+    max-width: 420px;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+/* 2. SMALL PHONES — 361–480px */
+@media (min-width: 361px) and (max-width: 480px) {
+  .hero {
+    height: auto;
+    padding: 50px 12px;
+  }
+  .hero-car {
+    position: relative;
+    width: 92%;
+    max-width: 520px;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+  }
+  .hero-decor {
+    display: none;
+  }
+}
+
+/* 3. MEDIUM PHONES — 481–576px */
+@media (min-width: 481px) and (max-width: 576px) {
+  .hero {
+    height: auto;
+    padding: 50px 12px;
+  }
+  .hero-car {
+    position: relative;
+    width: 92%;
+    max-width: 520px;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+  }
+  .hero-decor {
+    display: none;
+  }
+}
+
+/* 4. TABLET PORTRAIT — 577–768px */
+@media (min-width: 577px) and (max-width: 768px) {
+  .hero {
+    height: auto;
+    padding: 60px 0;
+    background-position: center top;
+  }
+  .hero-car {
+    position: relative;
+    width: 75%;
+    right: 0;
+    bottom: -10px;
+    margin: 0 auto;
+  }
+  .hero-decor {
+    width: 160px;
+    right: 14px;
+    bottom: 14px;
+  }
+}
+
+/* 5. TABLET LANDSCAPE / SMALL LAPTOP — 769–1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero {
+    height: 65vh;
+    padding-top: 20px;
+    padding-bottom: 40px;
+  }
+  .hero-car {
+    width: 55%;
+    right: -60px;
+    bottom: -60px;
+  }
+  .hero-decor {
+    width: 220px;
+    right: 16px;
+    bottom: 32px;
+  }
+}
+
+/* 6. LAPTOP — 1025–1365px */
+@media (min-width: 1025px) and (max-width: 1365px) {
+  .hero {
+    height: 90vh;
+  }
+  .hero-car {
+    width: 60%;
+    right: -120px;
+    bottom: -100px;
+  }
+}
+
+/* 7. DESKTOP BESAR(Sama seperti laptop saya) ≥ 1366px */
+@media (min-width: 1366px) {
+  .hero {
+    height: 100vh;
+  }
+  .hero-car {
+    width: 64%;
+    right: -170px;
+    bottom: -130px;
+  }
+}
+
+/* 8. VERY LARGE DESKTOP — ≥1600px */
+@media (min-width: 1600px) {
+  .hero {
+    height: 100vh;
+  }
+  .hero-car {
+    width: 62%;
+    right: -200px;
+    bottom: -140px;
+  }
+}
+
+/* 9. TOUCH DEVICES */
+@media (hover: none) and (pointer: coarse) {
+  .hero-car:hover img,
+  .hero-car:active img {
+    transform: none;
+    filter: contrast(1.02) brightness(1.02);
+  }
+}
+
+/*===========
+  WHY SECTION
+  ===========*/
+
+.why {
+  background: #fff;
+  position: relative;
+  padding: 4rem 0 5rem;
+}
+
+/* FIX UTAMA AGAR CARD TIDAK TERPOTONG */
+.why .container {
+  overflow: visible !important;
+}
+
+/* HEADER */
+.why-header {
+  position: relative;
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.why-header h2 {
+  font-weight: 700;
+  color: var(--black);
+  margin-top: -10px;
+  margin-bottom: 0.3rem;
+  padding-bottom: 1.1rem;
+}
+
+/* BUTTON NEXT / PREV */
+.why-controls {
+  position: absolute;
+  right: 90px;
+  top: 220%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 0.75rem;
+  padding-bottom: 4.4rem;
+}
+
+.why-btn {
+  background-color: var(--red-primary);
+  color: var(--white);
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.why-btn:hover {
+  background-color: #b30710;
+  transform: scale(1.08);
+}
+
+/* CARD WRAPPER */
+.why-cards {
+  padding-bottom: 40px; /* Tambahan ruang hover */
+  display: flex;
+  gap: 25px;
+  overflow: visible !important; /* PERBAIKAN PALING PENTING */
+  position: relative;
+  justify-content: center;
+  margin-top: 2rem;
+  min-height: 280px;
+}
+
+/* SINGLE CARD */
+.why-card {
+  width: 260px;
+  min-height: 240px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem 1rem;
+  text-align: center;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  transition: transform 0.35s ease, opacity 0.35s ease,
+    background-color 0.35s ease, box-shadow 0.35s ease;
+
+  opacity: 0;
+  position: relative;
+  z-index: 3;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* STATUS SLIDER */
+.why-card.hidden {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.why-card.show {
+  opacity: 1;
+  position: relative;
+}
+
+/* SLIDE ANIMATIONS */
+.why-slide-left {
+  transform: translateX(-50px);
+}
+
+.why-slide-right {
+  transform: translateX(50px);
+}
+
+/* ICON */
+.why-card .feature-icon {
+  font-size: 2.2rem;
+  color: var(--red-primary);
+  margin-bottom: 1rem;
+}
+
+/* TITLE */
+.why-card h5 {
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #111;
+}
+
+/* DESCRIPTION */
+.why-card p {
+  color: #555;
+  font-size: 0.95rem;
+  text-align: left;
+  line-height: 1.6;
+}
+
+/* HOVER CARD – FIX + EFEK PREMIUM */
+.why-card:hover {
+  background-color: var(--red-primary);
+  transform: translateY(-14px); /* Lebih tinggi tanpa terpotong */
+  box-shadow: 0 28px 60px rgba(229, 9, 20, 0.35);
+  z-index: 20; /* Pastikan tampil di depan */
+}
+
+.why-card:hover .feature-icon,
+.why-card:hover h5,
+.why-card:hover p {
+  color: #fff !important;
+}
+
+.btn-youtube {
+  padding: 8px 18px;
+  border-radius: 50px;
+}
+
+/*========================
+   RESPONSIVE WHY SECTION
+  ========================*/
+
+/* 1. MOBILE 0–360px (Extra Small) */
+@media (max-width: 360px) {
+  .why {
+    padding-bottom: 1.8rem;
+  }
+
+  .why-header {
+    margin-bottom: 2.8rem;
+  }
+
+  .why-header h2 {
+    font-size: 1.5rem;
+    margin-bottom: 3.4rem;
+  }
+
+  .why-controls {
+    position: absolute;
+    right: 8px;
+    top: 100%;
+    transform: translateY(10px);
+    display: flex;
+    gap: 0.5rem;
+    z-index: 20;
+  }
+
+  .why-cards {
+    margin-top: 3.5rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .why-card {
+    max-width: 320px;
+    width: 100%;
+    min-height: 225px;
+  }
+
+  .why-card .feature-icon {
+    font-size: 1.7rem;
+  }
+}
+
+/* 2. SMALL PHONES 361–480px */
+@media (min-width: 361px) and (max-width: 480px) {
+  .why-header h2 {
+    font-size: 1.55rem;
+    margin-bottom: 3.7rem;
+  }
+
+  .why-controls {
+    right: 30px;
+    top: 155%;
+    transform: translateY(-12px);
+  }
+
+  .why-cards {
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .why-card {
+    max-width: 340px;
+    width: 100%;
+    min-height: 230px;
+  }
+
+  .btn-youtube {
+    padding: 6px 12px !important;
+    font-size: 0.85rem !important;
+
+    /* FIX WAJIB UNTUK MENGECILKAN LEBAR */
+    width: auto !important;
+    display: inline-flex !important;
+    max-width: fit-content !important;
+  }
+}
+
+/* 3. MEDIUM PHONES 481–576px */
+@media (min-width: 481px) and (max-width: 576px) {
+  .logo {
+    width: 95px !important;
+    transform: translateX(-15px);
+  }
+
+  .why-header h2 {
+    font-size: 1.6rem;
+    margin-bottom: 4rem;
+  }
+
+  .why-controls {
+    right: 50px;
+    top: 180%;
+    transform: translateY(-15px);
+  }
+
+  .why-cards {
+    margin-top: 3rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .why-card {
+    max-width: 360px;
+    width: 100%;
+    min-height: 235px;
+  }
+}
+
+/* 4. TABLET PORTRAIT 577–768px */
+@media (min-width: 577px) and (max-width: 768px) {
+  .why-cards {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .why-card {
+    width: 46%;
+    min-height: 230px;
+  }
+
+  .why-controls {
+    right: 20px;
+    top: 220%;
+  }
+
+  .btn-youtube {
+    padding: 7px 14px !important;
+    font-size: 0.9rem !important;
+
+    /* FIX WAJIB UNTUK MENGECILKAN LEBAR */
+    width: auto !important;
+    display: inline-flex !important;
+    max-width: fit-content !important;
+  }
+}
+
+/* 5. TABLET LANDSCAPE / SMALL LAPTOP 769–1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .why-card {
+    width: 45%;
+    min-height: 240px;
+  }
+
+  .why-cards {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 22px;
+  }
+
+  .why-controls {
+    right: 25px;
+    top: 220%;
+  }
+
+  .btn-youtube {
+    padding: 8px 16px !important;
+    font-size: 0.95rem !important;
+
+    /* FIX WAJIB UNTUK MENGECILKAN LEBAR */
+    width: auto !important;
+    display: inline-flex !important;
+    max-width: fit-content !important;
+  }
+}
+
+/* 6. LAPTOP 1025–1365px */
+@media (min-width: 1025px) and (max-width: 1365px) {
+  .why-cards {
+    gap: 25px;
+  }
+
+  .why-card {
+    width: 260px;
+  }
+
+  .why-controls {
+    right: 0px;
+    top: 205%;
+  }
+}
+
+/* 7. DESKTOP BESAR(Sama seperti laptop saya) ≥ 1366px */
+@media (min-width: 1366px) {
+  .why-cards {
+    gap: 28px;
+    justify-content: center;
+  }
+
+  .why-card {
+    width: 280px;
+    min-height: 250px;
+  }
+
+  .why-controls {
+    right: 45px;
+    top: 200%;
+  }
+}
+
+/* OPTIONAL: VERY LARGE DESKTOP ≥1600px */
+@media (min-width: 1600px) {
+  .why-cards {
+    gap: 32px;
+  }
+
+  .why-card {
+    width: 300px;
+    min-height: 260px;
+  }
+
+  .why-controls {
+    right: 120px;
+    top: 190%;
+  }
+}
+
+/*  TOUCH DEVICES */
+@media (hover: none) and (pointer: coarse) {
+  .why-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* =============
+   VIDEO SECTION
+   ============= */
+.video-section {
+  background: var(--red-primary);
+  color: var(--white);
+  padding: 5rem 0;
+  text-align: center;
+}
+
+.video-section .video-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+.video-section h3 {
+  font-weight: 700;
+  margin: 0 0 10px;
+  padding-bottom: 20px;
+}
+
+.video-section p,
+.video-section span {
+  color: #fff;
+  text-align: justify;
+}
+
+.video-section .text-muted {
+  color: #fff !important;
+}
+
+.video-section .btn-light {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  background: #fff;
+  color: var(--red-primary);
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  border-radius: 30px;
+  padding: 0.5rem 0.7rem;
+  transition: all 0.3s;
+  margin: 1rem auto 0;
+}
+
+.video-section .btn-light i {
+  color: var(--red-primary);
+  font-size: 1.4rem;
+}
+
+.video-section .btn-light:hover {
+  background: #f2f2f2;
+  color: #b30710;
+}
+
+.video-section .btn-light:hover i {
+  color: #b30710;
+}
+
+.video-section .ratio {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  border-radius: 18px;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  position: relative;
+  padding-top: 56.25%; /* fallback for older browsers */
+  height: 0;
+}
+
+.video-section .ratio iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* RESPONSIVE RULES */
+
+/* XXL / Very wide screens (≥1600px) */
+@media (min-width: 1600px) {
+  .video-section {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+  /* sedikit lebih lebar untuk layar sangat besar */
+  .video-section .ratio {
+    max-width: 1200px;
+    border-radius: 18px;
+  }
+  /* align button to left edge of constrained video (calc using half of max-width) */
+  .video-section .btn-light {
+    margin-left: calc(50% - 600px);
+    margin-right: 0;
+    margin-top: 1.5rem;
+    font-size: 1.2rem;
+    padding: 0.85rem 1.2rem;
+  }
+}
+
+/* Large desktop (1201px–1599px) */
+@media (min-width: 1201px) and (max-width: 1599px) {
+  .video-section .ratio {
+    max-width: 1100px;
+    border-radius: 16px;
+  }
+  .video-section .btn-light {
+    margin-left: calc(50% - 550px);
+    margin-right: 0;
+    margin-top: 1.25rem;
+    font-size: 1.15rem;
+  }
+}
+
+/* Desktop / Medium (993px–1200px) */
+@media (min-width: 993px) and (max-width: 1200px) {
+  .video-section .ratio {
+    max-width: 950px;
+    border-radius: 14px;
+  }
+  .video-section .btn-light {
+    margin-left: calc(50% - 475px);
+    margin-top: 1.1rem;
+    font-size: 1.05rem;
+    padding: 0.7rem 1rem;
+  }
+}
+
+/* Tablet landscape → small laptops (769px–992px) */
+@media (min-width: 769px) and (max-width: 992px) {
+  .video-section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  .video-section .ratio {
+    max-width: 760px;
+    border-radius: 14px;
+  }
+  /* pada breakpoint tablet, tombol kembali ke tengah (auto margin) */
+  .video-section .btn-light {
+    margin: 1rem auto 0;
+    font-size: 1rem;
+    padding: 0.65rem 0.9rem;
+  }
+}
+
+/* Tablet kecil / Large phones (577px–768px) */
+@media (min-width: 577px) and (max-width: 768px) {
+  .video-section {
+    padding-top: 3.2rem;
+    padding-bottom: 3.2rem;
+  }
+  .video-section .ratio {
+    max-width: 760px;
+    border-radius: 12px;
+  }
+  .video-section .btn-light {
+    display: block;
+    margin: 1rem auto 0;
+    width: 70%;
+    max-width: 420px;
+    font-size: 1rem;
+    padding: 0.65rem 0.9rem;
+  }
+}
+
+/* Small phones (≤576px) */
+@media (max-width: 576px) {
+  .video-section {
+    padding-top: 2rem;
+    padding-bottom: 1.8rem;
+    margin-top: -10px;
+  }
+  .video-section .ratio {
+    max-width: 100%;
+    width: 100%;
+    border-radius: 12px;
+    padding-top: 56.25%;
+  }
+  .video-section .btn-light {
+    display: block;
+    width: 100%;
+    max-width: 360px;
+    margin: 1rem auto 0;
+    font-size: 0.98rem;
+    padding: 0.6rem 0.9rem;
+  }
+}
+
+/* Extra tiny phones / narrow widths (≤430px) */
+@media (max-width: 430px) {
+  .video-section {
+    padding: 1.6rem 0.6rem;
+  }
+  .video-section .ratio {
+    border-radius: 10px;
+  }
+  .video-section .btn-light {
+    max-width: 320px;
+    font-size: 0.92rem;
+    padding: 0.55rem 0.75rem;
+  }
+}
+
+/* Touch device fallback: disable hover effects (pointer-coarse) */
+@media (hover: none) and (pointer: coarse) {
+  .video-section .btn-light:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* FIX: Align button exactly with paragraph on desktop */
+@media (min-width: 992px) {
+  /* Kolom kiri harus rata kiri */
+  .video-section .col-lg-6:first-child {
+    text-align: left !important;
+  }
+
+  /* Tombol harus ikut kolom kiri, bukan layout keseluruhan */
+  .video-section .col-lg-6:first-child .btn-light {
+    margin-left: 0 !important; /* Hapus calc() */
+    margin-right: 0 !important;
+  }
+}
+
+/*======================
+  RECENT PROJECT SECTION
+  ======================*/
+.project {
+  padding-top: 2rem !important; /* naikkan semua isi section */
+}
+
+.projects {
+  padding: 5rem 0; /* ruang vertikal atas dan bawah */
+  background-color: #fff;
+}
+
+/* --- Header Judul + Tombol Read More --- */
+.project-header {
+  position: relative; /* posisi untuk tombol read more */
+  text-align: center; /* judul di tengah */
+  margin-bottom: 3rem;
+}
+
+/* Judul "Recent Project" di tengah */
+.project-header h2 {
+  font-weight: 700;
+  color: var(--black);
+  font-size: 2rem;
+  margin: 0;
+  display: inline-block;
+}
+
+/* Tombol "Read More >>" di kanan */
+.project-header .read-more {
+  color: var(--red-primary); /* warna merah utama */
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  position: absolute;
+  right: 0;
+  top: 160%;
+  transform: translateY(-50%);
+}
+
+/* Efek hover tombol Read More */
+.project-header .read-more:hover {
+  color: #b30710;
+  text-decoration: underline;
+}
+
+/* --- Kartu Project --- */
+.project-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  background-color: #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Gambar project */
+.project-card img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  transition: transform 0.5s ease;
+  display: block;
+}
+
+/* Overlay hitam hanya di bagian gambar */
+.project-card .img-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 230px; /* sama tinggi dengan gambar */
+  background: rgba(0, 0, 0, 0); /* transparan awal */
+  transition: background 0.4s ease;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  z-index: 1;
+}
+
+/* Saat hover: overlay muncul hanya di atas gambar */
+.project-card:hover .img-overlay {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* Saat hover: gambar sedikit membesar */
+.project-card:hover img {
+  transform: scale(1.08);
+}
+
+/* Area isi kartu (judul + deskripsi) */
+.project-card .card-body {
+  background-color: #fff;
+  padding: 1.5rem;
+  flex-grow: 1;
+  z-index: 2;
+  position: relative;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Judul project */
+.project-card .card-body h5 {
+  font-weight: 700;
+  color: var(--red-primary); /* warna merah utama */
+  margin-bottom: 0.75rem;
+  font-size: 1.05rem;
+  line-height: 1.3;
+}
+
+/* Deskripsi project */
+.project-card .card-body p {
+  color: #444; /* abu gelap agar mudah dibaca */
+  font-size: 0.95rem;
+  text-align: justify;
+  line-height: 1.6;
+}
+
+/* Efek hover keseluruhan kartu */
+.project-card:hover {
+  transform: scale(1.05); /* naik sedikit */
+  box-shadow: 0px 30px 18px -8px rgba(0, 0, 0, 0.25);
+}
+
+/* Saat muncul di layar */
+.project-card.fade-up {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive on Tablet */
+@media (max-width: 992px) {
+  .project-header h2 {
+    font-size: 1.75rem;
+  }
+
+  .project-card img,
+  .project-card .img-overlay {
+    height: 200px;
+  }
+
+  .project-header .read-more {
+    margin-top: 15px !important;
+    display: block;
+    text-align: right;
+  }
+}
+
+/* Responsive on Mini Tablet */
+@media (max-width: 768px) {
+  .projects {
+    padding: 4rem 1rem;
+  }
+
+  .project-header h2 {
+    font-size: 1.6rem;
+  }
+
+  .project-card {
+    margin-bottom: 1.5rem;
+  }
+
+  .project-header .read-more {
+    margin-top: 20px !important;
+  }
+}
+
+/* Responsive on HP/Android */
+@media (max-width: 576px) {
+  .projects {
+    padding-top: 1rem !important; /* naikkan semua isi section */
+  }
+
+  .project-header {
+    text-align: center !important;
+    position: relative !important;
+  }
+
+  /* TURUNKAN JUDUL RECENT PROJECT */
+  .project-header h2 {
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+    text-align: center !important;
+  }
+
+  .project-header .read-more {
+    position: static !important;
+    display: block !important;
+    width: 100% !important;
+    text-align: right !important;
+    padding-right: 0.6rem !important;
+    margin-top: 0 !important;
+    margin-bottom: -5rem !important;
+  }
+}
+
+/* ===========
+   FAQ SECTION 
+   =========== */
+
+/* CARD DEFAULT */
+.faq .accordion-item {
+  border-radius: 12px;
+  background: #fff;
+  border: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  margin-bottom: 20px;
+
+  /* Tinggi saat tertutup – seragam */
+  min-height: 120px;
+
+  /* Jangan gunakan max-height di sini */
+  transition: all 0.35s ease;
+}
+
+/* HEADER BUTTON */
+.faq .accordion-button {
+  padding: 1rem 1.2rem;
+  font-weight: 600;
+  background: #fff;
+  color: #111;
+  box-shadow: none;
+}
+
+.faq .accordion-button:not(.collapsed) {
+  background: rgba(229, 9, 20, 0.06);
+  color: var(--red-primary);
+}
+
+/* BODY */
+.faq .accordion-body {
+  padding: 1rem 1.2rem;
+  text-align: justify;
+}
+
+/* SMOOTH COLLAPSE (SUPER HALUS) */
+.faq .accordion-collapse {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Saat terbuka — JS akan menentukan max-height dinamis */
+.faq .accordion-item.open .accordion-collapse {
+  max-height: 2000px; /* angka dummy */
+}
+
+/* Ikon animasi */
+.faq .accordion-button::after {
+  transition: transform 0.3s ease;
+}
+
+.faq .accordion-button:not(.collapsed)::after {
+  transform: rotate(180deg);
+}
+
+/* Card mengikuti tinggi konten secara otomatis */
+.faq .accordion-item.open {
+  min-height: auto;
+}
+
+/* RESPONSIVE */
+
+/* 1. MOBILE EXTRA SMALL 0–360px */
+@media (max-width: 360px) {
+  .faq .accordion-item {
+    max-width: 320px;
+    margin: 0 auto 18px;
+  }
+  .faq h2 {
+    font-size: 1.35rem;
+  }
+
+  /* Memberikan jarak Gap pada colum kiri dan kanan */
+  .faq .col-lg-6 {
+    margin-top: 0 !important; /* hapus jarak otomatis bootstrap */
+    padding-top: 0 !important;
+  }
+
+  .faq .row {
+    row-gap: 0 !important; /* pastikan tidak ada jarak tambahan */
+  }
+}
+
+/* 2. SMALL PHONES 361–480px */
+@media (min-width: 361px) and (max-width: 480px) {
+  .faq .accordion-item {
+    max-width: 350px;
+    margin: 0 auto 18px;
+  }
+
+  .faq h2 {
+    font-size: 1.45rem;
+  }
+
+  .faq .col-lg-6 {
+    margin-top: 0 !important; /* hapus jarak otomatis bootstrap */
+    padding-top: 0 !important;
+  }
+
+  .faq .row {
+    row-gap: 0 !important; /* pastikan tidak ada jarak tambahan */
+  }
+}
+
+/* 3. MEDIUM PHONES 481–576px */
+@media (min-width: 481px) and (max-width: 576px) {
+  .faq .accordion-item {
+    max-width: 380px;
+    margin: 0 auto 18px;
+  }
+  .faq h2 {
+    font-size: 1.55rem;
+  }
+
+  .faq .col-lg-6 {
+    margin-top: 0 !important; /* hapus jarak otomatis bootstrap */
+    padding-top: 0 !important;
+  }
+  .faq .row {
+    row-gap: 0 !important; /* pastikan tidak ada jarak tambahan */
+  }
+}
+
+/* 4. TABLET PORTRAIT 577–768px */
+@media (min-width: 577px) and (max-width: 768px) {
+  .faq .accordion-item {
+    width: 90%;
+    margin: 0 auto 18px;
+  }
+
+  .faq h2 {
+    font-size: 1.7rem;
+  }
+  .faq .col-lg-6 {
+    margin-top: 0 !important; /* hapus jarak otomatis bootstrap */
+    padding-top: 0 !important;
+  }
+  .faq .row {
+    row-gap: 0 !important; /* pastikan tidak ada jarak tambahan */
+  }
+}
+
+/* 5. TABLET LANDSCAPE / SMALL LAPTOP 769–1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .faq .accordion-item {
+    min-height: 120px;
+  }
+
+  .faq h2 {
+    font-size: 1.85rem;
+  }
+
+  .faq .col-lg-6 {
+    margin-top: 0 !important; /* hapus jarak otomatis bootstrap */
+    padding-top: 0 !important;
+  }
+  .faq .row {
+    row-gap: 0 !important; /* pastikan tidak ada jarak tambahan */
+  }
+}
+
+/* 6. LAPTOP 1025–1365px */
+@media (min-width: 1025px) and (max-width: 1365px) {
+  .faq .accordion-item {
+    min-height: 120px;
+  }
+}
+
+/* 7. DESKTOP BESAR(Sama seperti laptop saya) ≥ 1366px */
+@media (min-width: 1366px) {
+  .faq .col-lg-6 {
+    width: 48% !important;
+  }
+  .faq .accordion-item {
+    min-height: 90px !important;
+  }
+}
+
+/* 8. VERY LARGE DESKTOP ≥1600px */
+@media (min-width: 1600px) {
+  .faq .col-lg-6 {
+    width: 46% !important;
+  }
+
+  .faq .accordion-item {
+    min-height: 130px !important;
+    margin-bottom: 32px !important;
+    border-radius: 16px !important;
+  }
+
+  .faq .accordion-button {
+    font-size: 1.15rem !important;
+    padding: 1.2rem 1.4rem !important;
+  }
+
+  .faq .accordion-body {
+    font-size: 1rem;
+    line-height: 1.55rem;
+  }
+}
+
+/* TOUCH DEVICES */
+@media (hover: none) and (pointer: coarse) {
+  .faq .accordion-button:hover {
+    background: none;
+  }
+}
+
+/* =================
+   STATISTIC SECTION
+   ================= */
+
+/* Area utama statistik */
+.stats {
+  background-color: var(--red-primary);
+  color: var(--white);
+  padding: 0.4rem 0;
+  margin: -20px auto -30px auto;
+  width: 70%;
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.stat.percent::after {
+  content: "%";
+  margin-left: 3px;
+  font-weight: 700;
+}
+
+/* Efek gradasi di atas dan bawah area statistik */
+.stats::before,
+.stats::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 0%;
+  height: 30px;
+  pointer-events: none;
+  z-index: -1; /* Di bawah isi utama */
+}
+
+/* Gradasi di bagian atas */
+.stats::before {
+  top: -30px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), transparent);
+}
+
+/* Gradasi di bagian bawah */
+.stats::after {
+  bottom: -30px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.2), transparent);
+}
+
+/* Angka utama (nilai statistik) */
+.stats h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+/* Teks deskripsi di bawah angka */
+.stats p {
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  margin: 0;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* RESPONSIVE DESIGN - STATISTIC SECTION */
+
+/* Responsive on Tablet */
+@media (max-width: 992px) {
+  .stats {
+    width: 85%;
+    margin: -25px auto -25px auto;
+    padding: 2rem 1.5rem;
+    margin-bottom: -60px !important;
+  }
+}
+
+/* Untuk tampilan HP dan Mini-Tablet (≤768px) */
+@media (max-width: 768px) {
+  .stats {
+    width: 80%;
+    margin: -20px auto -20px auto;
+    padding: 2.5rem 1rem;
+  }
+
+  /* Kurangi tinggi efek gradasi di layar kecil */
+  .stats::before,
+  .stats::after {
+    height: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .stats {
+    width: 100%;
+    margin-bottom: 0px !important;
+    margin-top: -15px !important;
+  }
+}
+
+/*========
+   FOOTER 
+  ========*/
+
+/* Bagian utama footer dengan background gambar */
+.footer-info {
+  background: url("../img/footer-info.jpg") center/cover no-repeat;
+  color: #ffffff;
+  position: relative;
+  padding: 5rem 0 3rem;
+}
+
+/* Lapisan overlay gelap agar teks terbaca */
+.footer-info::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 1;
+}
+
+/* Posisi konten di atas overlay */
+.footer-info .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Grid untuk kolom footer */
+.footer-info .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* Setiap kolom footer */
+.footer-col {
+  flex: 0 0 25%;
+  max-width: 25%;
+  padding: 0 15px;
+}
+
+/* Judul kolom */
+.footer-info h6 {
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+/* Deskripsi teks */
+.footer-info p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Link umum di footer */
+.footer-info a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-info a:hover {
+  color: var(--red-primary);
+}
+
+/* Logo di footer */
+.footer-logo {
+  width: 120px;
+  margin-bottom: 1rem;
+}
+
+/* Deskripsi di bawah logo */
+.footer-logo .footer-desc {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+/* Hover efek deskripsi */
+.footer-info .footer-desc:hover {
+  color: var(--red-primary);
+  transition: color 0.3s ease;
+}
+
+/* Ikon media sosial */
+.social-links a {
+  color: #fff;
+  font-size: 1.2rem;
+  margin-right: 10px;
+  transition: color 0.3s ease;
+}
+.social-links a:hover {
+  color: var(--red-primary);
+}
+
+/* RECENT POST */
+.recent-post .post-item {
+  display: flex;
+  align-items: flex-start;
+}
+
+.recent-post .post-thumb {
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-right: 10px;
+}
+
+.recent-post .post-title {
+  font-weight: 600;
+  color: #fff;
+  font-size: 0.9rem;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.recent-post .post-title:hover {
+  color: var(--red-primary);
+}
+
+.recent-post p {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 4px;
+}
+
+.recent-post span {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* QUICK CONTACT FORM */
+.footer-info form input,
+.footer-info form textarea {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.footer-info form input::placeholder,
+.footer-info form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Tombol kirim form */
+.footer-info button {
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+.footer-info button:hover {
+  background-color: #b30710;
+}
+
+/* RESPONSIVE FOOTER */
+
+/* Tablet (≤992px) */
+@media (max-width: 992px) {
+  .footer-col {
+    flex: 0 0 50%;
+    max-width: 50%;
+    margin-bottom: 2rem;
+    margin-top: 4rem;
+  }
+  .footer-info {
+    text-align: center;
+  }
+  .recent-post .post-item {
+    justify-content: center;
+  }
+  .footer-info form {
+    margin: 0 auto;
+    max-width: 300px;
+  }
+}
+
+/* HP (≤576px) */
+@media (max-width: 576px) {
+  .footer-col {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .footer-info {
+    text-align: center;
+  }
+  .recent-post .post-item {
+    flex-direction: column;
+    align-items: center;
+  }
+  .recent-post .post-thumb {
+    margin-bottom: 8px;
+  }
+}
+
+/* COPYRIGHT */
+.footer-copyright {
+  background: #b30710;
+  color: #fff;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.footer-copyright p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* UTILITIES */
+.text-muted-small {
+  color: #ffffff;
+  font-size: 0.95rem;
+}
+
+/* TAMBAHAN DI MENU NAVBAR (KHUSUS TAMPILAN MOBILE) */
+
+/* ==================================================
+   NAVBAR UNDERLINE MOBILE + TABLET — SAME AS DESKTOP
+   ================================================== */
+@media (max-width: 991px) {
+  .navbar .nav-link {
+    position: relative;
+    padding-bottom: 6px; /* ruang untuk garis */
+    display: inline-block; /* penting! agar garis mengikuti teks */
+  }
+
+  .navbar .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: 0; /* berada di bawah teks */
+    left: 50%; /* mulai dari tengah */
+    transform: translateX(-50%); /* efek garis dari tengah */
+    width: 0; /* awal tidak terlihat */
+    height: 2px; /* sama seperti desktop */
+    background-color: var(--red-primary);
+    transition: width 0.35s ease;
+  }
+
+  /* Efek: hover, focus, active → garis melebar dari tengah */
+  .navbar .nav-link:hover::after,
+  .navbar .nav-link:focus::after,
+  .navbar .nav-link:active::after {
+    width: 45px; /* sama seperti desktop */
+  }
+
+  /* Teks ikut berubah menjadi merah */
+  .navbar .nav-link:hover,
+  .navbar .nav-link:focus,
+  .navbar .nav-link:active {
+    color: var(--red-primary);
+  }
+}
+
+/* =================================================
+   ANIMASI NAVBAR COLLAPSE (MOBILE + TABLET ≤ 991px)
+   ================================================= */
+@media (max-width: 991px) {
+  #navMenu {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: max-height 0.55s cubic-bezier(0.25, 0.1, 0.25, 1),
+      opacity 0.55s ease-in-out;
+  }
+
+  /* Saat menu terbuka — smooth open */
+  #navMenu.opening {
+    max-height: 600px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Saat menu terbuka penuh */
+  #navMenu.show {
+    max-height: 600px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Saat menutup — smooth close */
+  #navMenu.closing {
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+}
